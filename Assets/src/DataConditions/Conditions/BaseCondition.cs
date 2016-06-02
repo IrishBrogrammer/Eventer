@@ -11,6 +11,6 @@ public abstract class BaseCondition : IDataCondition
     public eConditionTypes ConditionType;
     public IConditionAction SuccessAction;
     public IConditionAction FailureAction;
-    protected List<Condition> Conditions;
+    public List<Condition> Conditions;
     public abstract void Evaluate();
 }

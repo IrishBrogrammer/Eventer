@@ -1,6 +1,4 @@
 
-
-
 public class IsGreaterEvent : IConditionEvent
 {
     public  bool Evaluate( IConditionParameters parameters )

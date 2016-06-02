@@ -5,8 +5,14 @@ public class AllTrueCondition : BaseCondition
     public override void Evaluate()
     {
        foreach( var cond in Conditions )
-            cond.Evaluate();
-        
+       {
+           if ( cond.Evaluate() == false )
+           {
+              FailureAction.PerformAction();
+              return;
+           }
+       }
+       SuccessAction.PerformAction();
     }
     
 }
