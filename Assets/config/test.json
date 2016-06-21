@@ -1,0 +1,16 @@
+[
+	
+	{
+		"ConditionType" : "AllTrue",
+		"Conditions" : [
+			{
+				"ConditionEvent" : "IsGreater",	
+				"ConditionParams" : 
+				{
+					"Value" : 5,
+					"MinValue" : 2
+				}
+			}
+		]
+	}	
+]
