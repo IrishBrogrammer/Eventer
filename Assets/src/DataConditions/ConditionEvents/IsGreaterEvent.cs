@@ -1,7 +1,7 @@
 
-public class IsGreaterEvent : IConditionEvent
+public class IsGreaterEvent : BaseConditionEvent
 {
-    public  bool Evaluate( IConditionParameters parameters )
+    public override bool Evaluate( IConditionParameters parameters )
     {
         IsGreaterParameters param = parameters as IsGreaterParameters;
         
