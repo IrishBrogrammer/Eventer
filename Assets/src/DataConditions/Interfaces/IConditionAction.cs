@@ -1,5 +1,5 @@
 
 public interface IConditionAction
 {
-    void PerformAction();
+    void PerformAction( IConditionActionParameters parameters );
 }
