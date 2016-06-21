@@ -3,14 +3,13 @@
 
 public class IsGreaterParameters : IConditionParameters
 {
-    public IsGreaterParameters( int val , int min )
+    public IsGreaterParameters( System.Int64 Value , System.Int64 MinValue )
     {
-        Value = val;
-        MinValue = min;
+        this.Value = Value;
+        this.MinValue = MinValue;
     }
-    
-    public int Value;
-    public int MinValue;
+    public System.Int64 Value;
+    public System.Int64 MinValue;
 }
 
 
