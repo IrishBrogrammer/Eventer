@@ -11,7 +11,7 @@ public class LogAction : IConditionAction
     private string message;
     
     
-    public void PerformAction()
+    public void PerformAction( IConditionActionParameters parameters )
     {
         Debug.Log( message );
     }
