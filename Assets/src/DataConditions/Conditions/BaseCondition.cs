@@ -8,9 +8,9 @@ public enum  eConditionTypes
 }
 public abstract class BaseCondition : IDataCondition 
 {
-    public eConditionTypes ConditionType;
-    public IConditionAction SuccessAction;
-    public IConditionAction FailureAction;
+    public string ConditionType;
+    //public IConditionAction SuccessAction;
+    //public IConditionAction FailureAction;
     public List<Condition> Conditions;
     public abstract void Evaluate();
 }
