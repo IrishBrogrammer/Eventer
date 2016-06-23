@@ -2,29 +2,20 @@ using System;
 using System.Collections.Generic;
 public static class ConditionEventFactory
 {
-	private delegate IConditionEvent CreateEvent();
-	private static Dictionary<ConditionEventTypes,CreateEvent> typeDict = new Dictionary<ConditionEventTypes,CreateEvent>();
-
+	private static ConditionFactory<IConditionEvent,ConditionEventTypes> factory = new ConditionFactory<IConditionEvent,ConditionEventTypes>();
+	
 	public static void Setup()
 	{
-		typeDict.Add( ConditionEventTypes.IsGreater ,  CreateIsGreaterEvent );
+		Dictionary<ConditionEventTypes,Type> typeDict = new Dictionary<ConditionEventTypes,Type>();
+		typeDict.Add( ConditionEventTypes.IsGreater ,  typeof(IsGreaterEvent ) );
+		
+		factory.Setup( typeDict );
 	}
 	
 	public static IConditionEvent CreateEventType( ConditionEventTypes eType )
 	{
-		if ( typeDict.ContainsKey( eType  ) )
-		{
-			return typeDict[eType]();
-		}
-		UnityEngine.Debug.Log( " Did not find key" );
-		return null;	
+		return factory.CreateEventType( eType );	
 	}
-	
-	private static IConditionEvent CreateIsGreaterEvent()
-	{
-		return new IsGreaterEvent();
-	}
-	
-	
+
 	
 }
