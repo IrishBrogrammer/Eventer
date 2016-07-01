@@ -12,7 +12,7 @@ public class AllTrueCondition : BaseCondition
               return;
            }
        }
-       //SuccessAction.PerformAction();
+       SuccessAction.InvokeAction();
     }
     
 }

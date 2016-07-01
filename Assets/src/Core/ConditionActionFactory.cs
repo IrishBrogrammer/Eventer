@@ -8,12 +8,13 @@ public static class ConditionActionFactory
 	public static void Setup()
 	{
 		Dictionary<ConditionActionTypes,Type> typeDict = new Dictionary<ConditionActionTypes,Type>();
-		typeDict.Add( ConditionActionTypes.UnityLogMessage ,  typeof(LogAction ) );
+		typeDict.Add( ConditionActionTypes.UnityLogMessage ,  typeof( LogAction ) );
 		factory.Setup( typeDict );
 	}
 	
-	public static IConditionAction CreateEventType( ConditionActionTypes eType )
+	public static IConditionAction CreateActionType( ConditionActionTypes eType )
 	{
+		UnityEngine.Debug.Log( " Action type is " + eType.ToString() );
 		return factory.CreateEventType( eType );	
 	}
 

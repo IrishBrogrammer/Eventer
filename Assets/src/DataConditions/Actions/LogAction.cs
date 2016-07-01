@@ -2,17 +2,12 @@ using UnityEngine;
 
 public class LogAction : IConditionAction
 {
-    public LogAction( string msg )
-    {
-        message = msg;
-    }
-    
-    
-    private string message;
-    
-    
+    public string message;
+  
     public void PerformAction( IConditionActionParameters parameters )
     {
+        var actionParams = parameters as LogActionParameters;
+        message = actionParams.Message;
         Debug.Log( message );
     }
     

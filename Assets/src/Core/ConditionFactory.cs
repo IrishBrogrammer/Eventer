@@ -12,6 +12,7 @@ public class ConditionFactory<TOne,TTwo>
 	
 	public TOne CreateEventType( TTwo eType )
 	{
+		UnityEngine.Debug.Log( " The key was " + eType.ToString() );
 		if ( typeDict.ContainsKey( eType  ) )
 		{
 			return (TOne)Activator.CreateInstance( typeDict[eType] );

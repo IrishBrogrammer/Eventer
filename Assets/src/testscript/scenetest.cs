@@ -14,13 +14,14 @@ public class scenetest : MonoBehaviour {
 	{
 		Debug.Log( " Starting tests " );
 		eventParser = new EventerParser();	
-		//RunTests();
 		LoadJson();
 	}
 	
 	private void LoadJson()
 	{
 		ConditionEventFactory.Setup();
+		ConditionActionFactory.Setup(); 
+		
 		Debug.Log( " Brian" );
 		if ( testJson.text != null )
 			Debug.Log( testJson.text );
@@ -58,21 +59,7 @@ public class scenetest : MonoBehaviour {
 		return testList;
 	}
 	
-	
-	
-	void RunTests()
-	{
-		
-		Debug.Log( " All tests successful" );
-		
-		var testList = CreateConditionList();
-		var controller = new ConditionalController();
-		
-		controller.EvaluateConditions( testList );
-		
 
-	}
-	
 	// Update is called once per frame
 	void Update () {
 	
