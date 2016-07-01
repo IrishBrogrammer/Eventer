@@ -7,7 +7,7 @@ public class EventerAction
 	
 	public EventerAction( IConditionAction act , IConditionActionParameters actionParameters )
 	{
-		act = action;
+		action = act;
 		parameters = actionParameters;
 	}
 	

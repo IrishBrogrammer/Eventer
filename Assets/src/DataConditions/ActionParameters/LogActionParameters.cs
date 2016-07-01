@@ -5,6 +5,7 @@ public class  LogActionParameters : IConditionActionParameters
 	
 	public LogActionParameters( string Message )
 	{
+		UnityEngine.Debug.Log( " Action paramer loader called" );
 		this.Message = Message;
 	}
 	

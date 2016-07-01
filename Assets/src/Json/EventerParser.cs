@@ -53,7 +53,9 @@ public class EventerParser
 				
 		dataCond.SuccessAction = LoadAction( "SuccessAction" , obj );
 		dataCond.FailureAction = LoadAction( "FailureAction" , obj );	
-	
+		
+		dataCond.SuccessAction.InvokeAction();
+		
 		return dataCond;	
 	}
 	
@@ -71,7 +73,7 @@ public class EventerParser
 	private List<Condition> LoadConditions( IList<object> oList )
 	{
 		List<Condition> conditions = new List<Condition>();
-		UnityEngine.Debug.Log( " Load conditions count is " + oList.Count );
+		
 		foreach( var obj in oList )
 		{
 			Dictionary<string,object> objDict = obj as Dictionary<string,object>;	
@@ -85,7 +87,7 @@ public class EventerParser
 	{
 		return new Condition(
 			CreateConditionEvent( obj ), 
-			CreateConditionParameters( obj )
+			CreateParameter<IConditionParameters>( "ConditionParams" , ParameterContainer , obj )
 		);
 	}
 	
@@ -93,7 +95,7 @@ public class EventerParser
 	{
 		return new EventerAction(
 			CreateActionEvent( "Action" , obj ),
-			CreateActionParameters( "Params" , obj )
+			CreateParameter<IConditionActionParameters>( "Params" , ActionsParameterContainer , obj )
 		);
 	}
 	
@@ -110,17 +112,6 @@ public class EventerParser
 		return ConditionEventFactory.CreateEventType( eventType.ToEnum<ConditionEventTypes>() );
 	}
 	
-	private IConditionParameters CreateConditionParameters( Dictionary<string,object> obj )
-	{
-		if ( obj.ContainsKey( "ConditionParams" ) == false )
-		{
-			UnityEngine.Debug.Log( " Could not find event parameters on condition passed in" );	
-		}		
-		
-		var conditionObj = obj["ConditionParams"] as Dictionary<string,object>;
-		return ParameterContainer.CreateInstanceOfType( conditionObj ) as IConditionParameters; 
-	}
-	
 	private IConditionAction CreateActionEvent( string keyName ,  Dictionary<string,object> obj )
 	{
 		if ( obj.ContainsKey( keyName ) == false  )
@@ -133,17 +124,18 @@ public class EventerParser
 		return ConditionActionFactory.CreateActionType( eventType.ToEnum<ConditionActionTypes>() );
 	}
 	
-	private IConditionActionParameters CreateActionParameters( string keyName ,  Dictionary<string,object> obj )
+	
+
+	private static T CreateParameter<T>( string keyName , EventerTypeContainer container ,  Dictionary<string,object> obj )
 	{
 		if ( obj.ContainsKey( keyName ) == false )
 		{
-			UnityEngine.Debug.Log( " Could not find action parameters " );
-		}	
-		
+			UnityEngine.Debug.Log( " Could not find parameter loader for " + keyName );
+		}
+
 		var conditionObj = obj[keyName] as Dictionary<string,object>;
-		return ActionsParameterContainer.CreateInstanceOfType( conditionObj ) as IConditionActionParameters;
+		return (T)container.CreateInstanceOfType( conditionObj );
+
 	}
-	
-	
 	
 }
