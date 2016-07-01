@@ -11,6 +11,14 @@
 					"MinValue" : 2
 				}
 			}
-		]
+		],
+		"SuccessAction" : 
+		{
+			"Action" : "UnityLogMessage",
+			"Params" : 
+			{
+				"Message" : "It works" 
+			}	
+		}
 	}	
 ]
